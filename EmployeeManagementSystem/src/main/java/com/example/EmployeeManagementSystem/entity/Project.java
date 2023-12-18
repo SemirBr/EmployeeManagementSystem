@@ -18,7 +18,9 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long employeeId;
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
     @Column(name="name_of_project")
     private String nameOfProject;
     @DateTimeFormat(pattern="yyyy-MM-dd")

@@ -14,8 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 public class ProjectDto {
     private long id;
-    private Employee employee;
     private String nameOfProject;
-    private Date dateFrom;
-    private Date dateTo;
+
 }

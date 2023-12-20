@@ -14,8 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeDto {
     private Long id;
-    private List<Project> projects;
     private String firstName;
     private String lastName;
-    private String email;
 }

@@ -32,6 +32,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/employeesystem
 spring.datasource.username=root
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
+```
 
 ## API Endpoints
 
@@ -66,6 +67,9 @@ You can test the API endpoints using tools like Postman. Send HTTP requests to t
 ## Database SQL File
 
 The SQL file for the database setup can be found within the project. Ensure proper configurations and security measures before deploying in production environments.
+
+
+
 
 
 

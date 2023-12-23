@@ -33,3 +33,38 @@ spring.datasource.username=root
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
 
+## API Endpoints
+
+### Employee
+
+- `GET /api/employees`: Retrieve all employees.
+- `GET /api/employees/{id}`: Retrieve an employee by ID.
+- `POST /api/employees`: Create a new employee.
+- `PUT /api/employees/{id}`: Update an employee by ID.
+- `DELETE /api/employees/{id}`: Delete an employee by ID.
+
+### Projects
+
+- `GET /api/projects`: Retrieve all projects.
+- `GET /api/projects/{id}`: Retrieve a project by ID.
+- `POST /api/projects`: Create a new project.
+- `PUT /api/projects/{id}`: Update a project by ID.
+- `DELETE /api/projects/{id}`: Delete a project by ID.
+
+### EmployeeProjectSystem
+
+- `GET /api/employeeprojectsystems`: Retrieve all employee-project relationships.
+- `GET /api/employeeprojectsystems/{id}`: Retrieve an employee-project relationship by ID.
+- `POST /api/employeeprojectsystems`: Create a new employee-project relationship.
+- `PUT /api/employeeprojectsystems/{id}`: Update an employee-project relationship by ID.
+- `DELETE /api/employeeprojectsystems/{id}`: Delete an employee-project relationship by ID.
+
+## Testing
+
+You can test the API endpoints using tools like Postman. Send HTTP requests to the respective endpoints (as mentioned above) to perform CRUD operations on the entities.
+
+## Database SQL File
+
+The SQL file for the database setup can be found within the project. Ensure proper configurations and security measures before deploying in production environments.
+
+

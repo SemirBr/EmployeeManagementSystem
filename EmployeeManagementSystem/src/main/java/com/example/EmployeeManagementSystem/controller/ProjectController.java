@@ -2,9 +2,11 @@ package com.example.EmployeeManagementSystem.controller;
 
 import com.example.EmployeeManagementSystem.dto.ProjectDto;
 import com.example.EmployeeManagementSystem.service.ProjectService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,12 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/projects")
+@Validated
 public class ProjectController {
 
     private final ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<ProjectDto> createProject(@RequestBody ProjectDto projectDto) {
+    public ResponseEntity<ProjectDto> createProject(@Valid @RequestBody ProjectDto projectDto) {
         ProjectDto savedProject = projectService.createProject(projectDto);
         return new ResponseEntity<>(savedProject, HttpStatus.CREATED);
     }

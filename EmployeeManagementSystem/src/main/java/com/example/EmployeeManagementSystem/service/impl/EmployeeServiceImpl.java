@@ -7,12 +7,18 @@ import com.example.EmployeeManagementSystem.exception.ResourceNotFoundException;
 import com.example.EmployeeManagementSystem.mapper.EmployeeMapper;
 import com.example.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.example.EmployeeManagementSystem.service.EmployeeService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
+
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         Employee employee= EmployeeMapper.mapToEmployee(employeeDto);

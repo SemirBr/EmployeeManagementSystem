@@ -6,12 +6,18 @@ import com.example.EmployeeManagementSystem.exception.ResourceNotFoundException;
 import com.example.EmployeeManagementSystem.mapper.ProjectMapper;
 import com.example.EmployeeManagementSystem.repository.ProjectRepository;
 import com.example.EmployeeManagementSystem.service.ProjectService;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class ProjectServiceImpl implements ProjectService {
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
+
+    public ProjectServiceImpl(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
 
     @Override
     public ProjectDto createProject(ProjectDto projectDto) {

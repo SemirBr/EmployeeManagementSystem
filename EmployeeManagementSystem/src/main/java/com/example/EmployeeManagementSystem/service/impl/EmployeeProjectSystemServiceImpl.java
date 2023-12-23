@@ -6,10 +6,11 @@ import com.example.EmployeeManagementSystem.exception.ResourceNotFoundException;
 import com.example.EmployeeManagementSystem.mapper.EmployeeProjectSystemMapper;
 import com.example.EmployeeManagementSystem.repository.EmployeeProjectSystemRepository;
 import com.example.EmployeeManagementSystem.service.EmployeeProjectSystemService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class EmployeeProjectSystemServiceImpl implements EmployeeProjectSystemService {
     private final EmployeeProjectSystemRepository employeeProjectSystemRepository;
 

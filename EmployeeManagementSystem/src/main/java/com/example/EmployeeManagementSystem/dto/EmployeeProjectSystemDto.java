@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployeeProjectSystemDto {
     private Long id;
     private Employee employee;
-    private List<Project> projects;
+    private Project projects;
     private Date dateFrom;
     private Date dateTo;
 }

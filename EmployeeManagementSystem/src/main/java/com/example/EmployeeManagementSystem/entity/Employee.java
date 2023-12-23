@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,4 +21,5 @@ public class Employee {
     private String firstName;
     @Column(name="last_name")
     private String lastName;
+
 }

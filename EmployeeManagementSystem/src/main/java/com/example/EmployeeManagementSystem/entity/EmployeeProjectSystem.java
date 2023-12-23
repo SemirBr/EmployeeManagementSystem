@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,14 +22,13 @@ public class EmployeeProjectSystem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "employee_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
-    private Project projects;
-
+    private Project project;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateFrom;
 

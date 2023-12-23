@@ -1,10 +1,14 @@
 package com.example.EmployeeManagementSystem.controller;
 
+import com.example.EmployeeManagementSystem.dto.EmployeePairsDto;
 import com.example.EmployeeManagementSystem.dto.EmployeeProjectSystemDto;
+import com.example.EmployeeManagementSystem.entity.EmployeeProjectSystem;
 import com.example.EmployeeManagementSystem.service.EmployeeProjectSystemService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,12 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/employee-project-systems")
+@Validated
 public class EmployeeProjectSystemController {
 
     private final EmployeeProjectSystemService employeeProjectSystemService;
 
     @PostMapping
-    public ResponseEntity<EmployeeProjectSystemDto> createEmployeeProjectSystem(@RequestBody EmployeeProjectSystemDto employeeProjectSystemDto) {
+    public ResponseEntity<EmployeeProjectSystemDto> createEmployeeProjectSystem(@Valid @RequestBody EmployeeProjectSystemDto employeeProjectSystemDto) {
         EmployeeProjectSystemDto savedEmployeeProjectSystem = employeeProjectSystemService.createEmployeeProjectSystem(employeeProjectSystemDto);
         return new ResponseEntity<>(savedEmployeeProjectSystem, HttpStatus.CREATED);
     }
@@ -29,9 +34,8 @@ public class EmployeeProjectSystemController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeProjectSystemDto>> getAllEmployeeProjectSystems() {
-        List<EmployeeProjectSystemDto> employeeProjectSystems = employeeProjectSystemService.getAllEmployeeProjectSystems();
-        return ResponseEntity.ok(employeeProjectSystems);
+    public ResponseEntity<List<EmployeeProjectSystem>> getAllEmployeeProjectSystems() {
+        return ResponseEntity.ok(employeeProjectSystemService.getAllEmployeeProjectSystems());
     }
 
     @PutMapping("{id}")
@@ -45,5 +49,9 @@ public class EmployeeProjectSystemController {
     public ResponseEntity<String> deleteEmployeeProjectSystem(@PathVariable("id") Long employeeProjectSystemId) {
         employeeProjectSystemService.deleteEmployeeProjectSystem(employeeProjectSystemId);
         return ResponseEntity.ok("Employee Project System deleted successfully");
+    }
+    @GetMapping("/pairs")
+    public ResponseEntity<EmployeePairsDto>findLongestWorkingPair(){
+        return ResponseEntity.ok(employeeProjectSystemService.findLongestWorkingPair());
     }
 }

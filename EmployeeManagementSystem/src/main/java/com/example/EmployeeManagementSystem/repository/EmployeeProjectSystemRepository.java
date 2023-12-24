@@ -1,10 +1,14 @@
 package com.example.EmployeeManagementSystem.repository;
 
+import com.example.EmployeeManagementSystem.entity.Employee;
 import com.example.EmployeeManagementSystem.entity.EmployeeProjectSystem;
+import com.example.EmployeeManagementSystem.entity.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeProjectSystemRepository extends JpaRepository<EmployeeProjectSystem, Long> {
 
@@ -16,7 +20,11 @@ public interface EmployeeProjectSystemRepository extends JpaRepository<EmployeeP
             "ORDER BY totalDuration DESC LIMIT 1")
     List<Object[]> findLongestWorkingPair();
 
+    List<EmployeeProjectSystem> findByEmployeeAndProjectAndDateFromAndDateTo(
+            Employee employee,
+            Project project,
+            Date dateFrom,
+            Date dateTo
+    );
 
 }
-
-

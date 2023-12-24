@@ -24,7 +24,6 @@ public class EmployeeProjectSystemDto {
     @PastOrPresent(message = "Date From should be in the past or present")
     private Date dateFrom;
 
-    @NotNull(message = "Date To cannot be null")
     @PastOrPresent(message = "Date To should be in the past or present")
     private Date dateTo;
 }

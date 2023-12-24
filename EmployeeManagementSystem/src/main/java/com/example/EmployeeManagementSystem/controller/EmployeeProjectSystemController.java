@@ -39,7 +39,7 @@ public class EmployeeProjectSystemController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<EmployeeProjectSystemDto> updateEmployeeProjectSystem(@PathVariable("id") Long employeeProjectSystemId,
+    public ResponseEntity<EmployeeProjectSystemDto> updateEmployeeProjectSystem(@Valid @PathVariable("id") Long employeeProjectSystemId,
                                                                                 @RequestBody EmployeeProjectSystemDto updatedEmployeeProjectSystem) {
         EmployeeProjectSystemDto employeeProjectSystemDto = employeeProjectSystemService.updateEmployeeProjectSystem(employeeProjectSystemId, updatedEmployeeProjectSystem);
         return ResponseEntity.ok(employeeProjectSystemDto);

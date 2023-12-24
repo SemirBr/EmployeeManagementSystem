@@ -4,8 +4,6 @@ import com.example.EmployeeManagementSystem.dto.EmployeeProjectSystemDto;
 import com.example.EmployeeManagementSystem.entity.Employee;
 import com.example.EmployeeManagementSystem.entity.EmployeeProjectSystem;
 import com.example.EmployeeManagementSystem.entity.Project;
-import com.example.EmployeeManagementSystem.exception.ResourceNotFoundException;
-import com.example.EmployeeManagementSystem.mapper.EmployeeProjectSystemMapper;
 import com.example.EmployeeManagementSystem.repository.EmployeeProjectSystemRepository;
 import com.example.EmployeeManagementSystem.repository.EmployeeRepository;
 import com.example.EmployeeManagementSystem.repository.ProjectRepository;
@@ -18,6 +16,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -49,8 +48,15 @@ public class CsvLoader {
                 String[] employeeData = line.split(",");
                 long employeeId = Long.parseLong(employeeData[0]);
                 long projectId = Long.parseLong(employeeData[1]);
-                Date dateFrom = sdf.get().parse(employeeData[2]);
-                Date dateTo = sdf.get().parse(employeeData[3]);
+                Date dateFrom;
+                Date dateTo;
+                try {
+                    dateFrom = sdf.get().parse(employeeData[2]);
+                    dateTo = sdf.get().parse(employeeData[3]);
+                } catch (ParseException e) {
+                    dateFrom = new Date(System.currentTimeMillis());
+                    dateTo = new Date(System.currentTimeMillis());
+                }
                 EmployeeProjectSystemDto employeeProjectSystemDto = new EmployeeProjectSystemDto();
                 employeeProjectSystemDto.setEmployeeId(employeeId);
                 employeeProjectSystemDto.setProjectId(projectId);
@@ -59,7 +65,7 @@ public class CsvLoader {
                 checkExisting(employeeProjectSystemDto);
 
             }
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -74,9 +80,10 @@ public class CsvLoader {
             employeeProjectSystem.setProject(project.get());
             employeeProjectSystem.setDateFrom(employeeProjectSystemDto.getDateFrom());
             employeeProjectSystem.setDateTo(employeeProjectSystemDto.getDateTo());
-//            if (employeeProjectSystemRepository.isPresent()){
-//
-//            }
+            List<EmployeeProjectSystem> projectSystemList = employeeProjectSystemRepository.findByEmployeeAndProjectAndDateFromAndDateTo(employee.get(), project.get(), employeeProjectSystemDto.getDateFrom(), employeeProjectSystemDto.getDateTo());
+            if (!projectSystemList.isEmpty()) {
+                return;
+            }
             employeeProjectSystemRepository.save(employeeProjectSystem);
         }
     }
